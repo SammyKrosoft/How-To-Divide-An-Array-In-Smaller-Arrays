@@ -13,3 +13,4 @@ We'll note that **($i) x Chunksize** and **[($i+1) x ChunkSize] - 1** correspond
 - Third smaller array, when $i = 2 in the FOR loop, that third part of the initial array will stretch from $i x 30 = 2 x 7 = 14 to ($i+1 x 7) = 3 x 7 = 21 minus 1 for the end bound that is 20
 - Fourth and last array, when $i = 3 in the FOR loop, that fourth part of the initial array will stretch from $i x 30 = 3 x 7 = 21 to ($i+1 x 7) = 4 x 7 = 28 minus 1 for the end bound that is 27
 
+. Then inside the FOR loop, we append each sub-array in a global array (using ```powershell $SubArrays += ,@($BigArray[$i*$ChunkSize..$($i+1)*$ChunkSize]``` - but we preferred to pre-store ```powershell $i*$Chunksize``` in a variable we call ```powershell $Start``` and ```powershell (($i+1)*$ChunkSize)-1``` in a variable we call ```powershell $End``` for the start and the end of the array
