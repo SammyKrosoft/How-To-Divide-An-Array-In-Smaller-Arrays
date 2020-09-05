@@ -27,4 +27,5 @@ For ($i=0; $i -le $Parts;$i++){
 }
 
 # We end up having a $SubArray that contain the smaller arrays that the main list $UsersList has been split into
+# We can use a specific Sub-array to a function by calling $SubArray[N] where N is the specific sub-array we need.
 Write-Host "Finished ! To refer to each of the $Part chunks, we use `$SubArray[n] where n is between 0 and $($Parts-1)" -ForegroundColor Yellow
