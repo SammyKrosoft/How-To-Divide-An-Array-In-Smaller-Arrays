@@ -23,9 +23,10 @@ For ($i=0; $i -le $Parts;$i++){
     $Start = $i*$Chunksize
     #Ending index of tha main table for the sub-table $i
     $End = (($i+1) * $Chunksize)-1
+    #Appending each smaller list in another array typed variable - notice the ',@(<Array>)' notation to force the $SubArray variable to be typed as an array variable
     $SubArray += ,@($UsersList[$Start..$End])
 }
 
 # We end up having a $SubArray that contain the smaller arrays that the main list $UsersList has been split into
-# We can use a specific Sub-array to a function by calling $SubArray[N] where N is the specific sub-array we need.
+# We can use a specific Sub-array on another cmdlet by calling $SubArray[N] where N is the specific sub-array we need.
 Write-Host "Finished ! To refer to each of the $Part chunks, we use `$SubArray[n] where n is between 0 and $($Parts-1)" -ForegroundColor Yellow
