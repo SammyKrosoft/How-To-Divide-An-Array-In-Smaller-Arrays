@@ -4,7 +4,7 @@
 
 You have an array of 30 items (can be strings, numbers, anything), and you want to divide it on smaller arrays of 7 items
 
-* Use the math's "CEILING" function, ```[math]::ceiling()``` which will give the result of the 30 items array divided by the 7 items which is what we want the smaller array size to be
+- Use the math's "CEILING" function, ```[math]::ceiling()``` which will give the result of the 30 items array divided by the 7 items which is what we want the smaller array size to be
 In our case, 30/7 equals approx 4.28 => we can divide our 30 items array into 4 tables, and we will have a small leftover (.28) => we will then need **5 tables** to store all our **30 items**. **4 tables will have exactly 7 items** (that covers 28 items from our original table), and **the last one will have 2 items** (to get our total of 30 items of the original table). That Math::CEILING function is the key of our number of sub-arrays calculation here.
 - Then with a FOR (){} loop that covers our 5 smaller tables (running from $i=0 to $i=5, translated in PowerShell condition to ```$i -le 5 ```), we set the starting index of the original table ```$i*$Chunksize``` and then the end of the original table ```($i+1)*$ChunkSize```
 
