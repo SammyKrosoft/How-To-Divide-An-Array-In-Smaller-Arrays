@@ -7,10 +7,10 @@ $ArraySize = $UsersList.count
 # Determining max number of items per array
 $ChunkSize = 7
 
-# Determinig how many sub-lists of max $ChunkSize items we need to store all names in the list
+# Using the math::Ceiling() funciton, we determe how many sub-lists of $ChunkSize items max we need to store all names in the main list
 $Parts = [math]::Ceiling($ArraySize/$ChunkSize)
 
-# Displaying the resulting numbers...
+# Summarizing all the numbers (number of items in the array, how many items we want to separate this list, how many parts we need...)
 Write-host "Total number of items in the table to split: $ArraySize"
 Write-Host "Number of items per sub-table: $ChunkSize"
 Write-Host "Parts needed : $Parts"
@@ -19,9 +19,12 @@ Write-Host "The first $($Parts-1) parts will have $ChunkSize items, and the last
 # Processing the split of the whole list according to the number of items we want in each smaller list
 
 For ($i=0; $i -le $Parts;$i++){
+    #Starting index of the main table for the sub-table $i
     $Start = $i*$Chunksize
+    #Ending index of tha main table for the sub-table $i
     $End = (($i+1) * $Chunksize)-1
     $SubArray += ,@($UsersList[$Start..$End])
 }
 
+# We end up having a $SubArray that contain the smaller arrays that the main list $UsersList has been split into
 Write-Host "Finished ! To refer to each of the $Part chunks, we use `$SubArray[n] where n is between 0 and $($Parts-1)" -ForegroundColor Yellow
