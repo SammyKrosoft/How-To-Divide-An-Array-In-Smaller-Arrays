@@ -15,3 +15,24 @@ In our case, 30/7 equals approx 4.28 => we can divide our 30 items array into 4 
 - Fourth and last array, when $i = 3 in the FOR loop, that fourth part of the initial array will stretch from $i x 30 = 3 x 7 = 21 to ($i+1 x 7) = 4 x 7 = 28 minus 1 for the end bound that is 27
 
 . Then inside the FOR loop, we append each sub-array in a global array (using ```$SubArrays += ,@($BigArray[$i*$ChunkSize..$($i+1)*$ChunkSize]``` - but we preferred to pre-store ```$i*$Chunksize``` in a variable we call ```$Start``` and ```(($i+1)*$ChunkSize)-1``` in a variable we call ```$End``` for the start and the end of the array
+
+## Split-Array script
+This is a quick script with parameters (use Get-Help .\Split-Array.ps1 to get the help) to split a big array into smaller arrays with 2 parameters:
+- a main array as a parameter (-MainArray)
+- the number of items you want in the smaller arrays
+
+### Usage
+
+Store the smaller arrays results into an array, for example $SmallArrays:
+```
+$MainArray = "User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User20", "User11"
+$SmallArrays = .\Split-Array.ps1 -MainArray $MainArray -ChunkSize 3
+```
+
+Then call or use your smaller arrays calling the $SmallArrays[N]
+
+``` Set-InboundConnector -Identity "From Anti-spam Service - Group 1" -EFSkipLastIP $true -EFUsers $SmallArrays[0]```
+then assign the next group:
+``` Set-InboundConnector -Identity "From Anti-spam Service - Group 2" -EFSkipLastIP $true -EFUsers $SmallArrays[1]```
+etc...
+
